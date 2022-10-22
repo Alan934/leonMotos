@@ -1,0 +1,30 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+.carousel{
+    margin: auto;
+    padding: 0px;
+    max-width: 95%;
+}
+
+.carousel img{
+    max-width: 3001px;
+    max-height: 1056px;
+}
+
+#titulo{
+    font-family: 'Open Sans', sans-serif !important; 
+}
+
+body{
+    background: #f8f9fa; 
+}
+
+.imgProducto{
+    width: 310px;
+    height: 205px;
+}
+
