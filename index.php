@@ -114,6 +114,30 @@
                 </div>
             </div>
         </div>
+        
+        <section id="nuestros-productos">
+        <div class="container">
+            <h2>Nuestros Productos</h2>
+            <div class="programas">
+                <div class="carta">
+                    <h3>Motocicletas</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt vero corporis incidunt saepe qui commodi quasi neque veniam quam, aspernatur est beatae maxime animi sed reiciendis mollitia ducimus veritatis repellendus?</p>
+                    <a href="includes/productos/moto.php"><button class="boton">Mas Info</button></a>
+                </div>
+                <div class="carta">
+                    <h3>Bicicletas</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt vero corporis incidunt saepe qui commodi quasi neque veniam quam, aspernatur est beatae maxime animi sed reiciendis mollitia ducimus veritatis repellendus?</p>
+                    <a href="includes/productos/bici.php"><button class="boton">Mas Info</button></a>
+                </div>
+                <div class="carta">
+                    <h3>Accesorios</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt vero corporis incidunt saepe qui commodi quasi neque veniam quam, aspernatur est beatae maxime animi sed reiciendis mollitia ducimus veritatis repellendus?</p>
+                    <a href="includes/productos/accesorio.php"><button class="boton">Mas Info</button></a>
+                </div>  
+            </div>
+        </div>
+    </section>
+
         <div class="album py-5 bg-dark">
             <div class="container">
                 <p class="text-title text-center m-auto pb-4 display-4 text-white">Nuestros Productos</p>

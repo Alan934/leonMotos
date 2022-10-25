@@ -113,7 +113,7 @@
                     <?php while($moto = mysqli_fetch_assoc($sql)){ ?>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <a href="descripcion/descripcionMoto.php?idMoto=<?php echo $moto['id'];?>"><img src="../../<?php echo $moto['url'];?>" title="Descripcion" class="bd-placeholder-img card-img-top imgProducto" id="imagenProducto" alt="<?php echo $moto['marca'];?> <?php echo $moto['modelo'];?>"></a>     
+                            <a href="descripcion/descripcionMoto.php?idMoto=<?php echo $moto['id'];?>"><img src="../../<?php echo $moto['url'];?>" title="Descripcion" class="bd-placeholder-img card-img-top w-100 imgProducto" id="imagenProducto" alt="<?php echo $moto['marca'];?> <?php echo $moto['modelo'];?>"></a>     
                             <div class="card-body">
                                 <p class="card-title text-center fs-4 m-0 p-0"><?php echo $moto['marca'];?> <?php echo $moto['modelo'];?></p>
                                 <div class="d-flex justify-content-between align-items-center">

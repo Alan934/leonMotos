@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2022 a las 01:34:50
+-- Tiempo de generación: 20-10-2022 a las 05:21:14
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -48,8 +48,7 @@ INSERT INTO `moto` (`marca`, `modelo`, `precio`, `descripcion`, `id`, `precioAnt
 ('Gilera', 'AC4 250cc ', 599.999, '', 1, 659.999, 'Moto', 'imagenes/productos/moto/gileraac4.png', 1, 'Gilera AC4 250cc promociones moto '),
 ('Mondial', 'TD 250 RD', 419.999, '', 2, 0, 'Moto', 'imagenes/productos/moto/mondialtd250.jpg', 1, 'Mondial rd 250cc rd '),
 ('Motomel', 'Skua 150cc', 349.999, '', 3, 0, 'Moto', 'imagenes/productos/moto/skua150.png', 1, 'motomel skua 150cc'),
-('Gilera', 'Sahel 150cc', 349.999, '', 4, 0, 'Moto', 'imagenes/productos/moto/gilerasahel150.png', 1, 'Gilera sahel 150cc'),
-('Zanella', 'due 100 classic', 199.999, '', 5, 0, 'Moto', 'imagenes/productos/moto/zanelladue100classic.jpg', 1, 'moto zanella due 100 classic');
+('Gilera', 'Sahel 150cc', 349.999, '', 4, 0, 'Moto', 'imagenes/productos/moto/gilerasahel150.png', 1, 'Gilera sahel 150cc');
 
 --
 -- Índices para tablas volcadas
@@ -69,7 +68,7 @@ ALTER TABLE `moto`
 -- AUTO_INCREMENT de la tabla `moto`
 --
 ALTER TABLE `moto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
