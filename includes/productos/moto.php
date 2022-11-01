@@ -79,6 +79,8 @@
                                             <li><button class="btn dropdown-item" name="precioOriginal" type="submit" >Original</button></li>
                                             <li><button class="btn dropdown-item" name="precioAscendente" type="submit" >Menor a Mayor</button></li>
                                             <li><button class="btn dropdown-item" name="precioDescendente" type="submit" >Mayor a Menor</button></li>
+                                            <li><button class="btn dropdown-item" name="precio150a300" type="submit" >150K a 300K</button></li>
+                                            <li><button class="btn dropdown-item" name="precio300a700" type="submit" >300K a 700K</button></li>
                                         </form>
                                     </ul>
                                 </li>
@@ -117,10 +119,7 @@
                             <div class="card-body">
                                 <p class="card-title text-center fs-4 m-0 p-0"><?php echo $moto['marca'];?> <?php echo $moto['modelo'];?></p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <?php if($moto['precioAnterior'] > 0){ ?>
-                                        <small class="text-muted text-center m-0 p-0"> <del class="text-danger fs-5 text-center ">$<?php echo $moto['precioAnterior'];?></del> <img src="../../imagenes/logito/arrow-right.svg" width="24" height="24" alt=""></small>
-                                    <?php } ?>
-                                    <small class="text-muted text-center m-auto p-0"><span class="text-success fs-4">$<?php echo $moto['precio'];?> ARS</span></small>
+                                    <small class="text-muted text-center m-auto p-0"><span class="text-success fs-4">$<?php echo number_format($moto['precio'], 3, ",", "");?> ARS</span></small>
                                 </div>
                             </div>
                         </div>
@@ -140,6 +139,14 @@
         $mostrarOrdenMoto = $conex->query("SELECT * FROM moto ORDER BY precio DESC");
         mostrarMoto($mostrarOrdenMoto);
     }
+    if(isset($_POST['precio150a300'])){
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where precio BETWEEN 150.000 AND 300.000");
+        mostrarMoto($mostrarOrdenMoto);
+    }
+    if(isset($_POST['precio300a700'])){
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where precio BETWEEN 300.000 AND 700.000");
+        mostrarMoto($mostrarOrdenMoto);
+    }
     if(isset($_POST['motomel'])){   
         $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca = 'Motomel'");
         mostrarMoto($mostrarOrdenMoto);
@@ -156,7 +163,7 @@
         $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca = 'Zanella'");
         mostrarMoto($mostrarOrdenMoto);
     }
-    if(isset($_POST['todas']) || isset($_POST['precioOriginal']) || (!isset($_POST['precioAscendente']) && !isset($_POST['precioDescendente']) && !isset($_POST['motomel']) && !isset($_POST['gilera']) && !isset($_POST['zanella']) && !isset($_POST['mondial'])) ){
+    if(isset($_POST['todas']) || isset($_POST['precioOriginal']) || (!isset($_POST['precioAscendente']) && !isset($_POST['precio300a700']) && !isset($_POST['precioDescendente']) && !isset($_POST['precio150a300']) && !isset($_POST['motomel']) && !isset($_POST['gilera']) && !isset($_POST['zanella']) && !isset($_POST['mondial'])) ){
         mostrarMoto($consultaMoto);
     }
     ?>

@@ -108,7 +108,7 @@
                     </div>
                     <div class="col pb-1">
                         <div class="card m-auto">
-                            <iframe class="m-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d209.79263342701222!2d-68.59147841672515!3d-32.72107323381253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e197a92b8d317%3A0x2aa199b05810ebd7!2sLe%C3%B3n%20motos%20Lavalle!5e0!3m2!1ses-419!2sar!4v1666199857966!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe class="m-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d209.79263342701222!2d-68.59147841672515!3d-32.72107323381253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e197a92b8d317%3A0x2aa199b05810ebd7!2sLe%C3%B3n%20motos%20Lavalle!5e0!3m2!1ses-419!2sar!4v1666199857966!5m2!1ses-419!2sar" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>

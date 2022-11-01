@@ -76,56 +76,216 @@
             </div>
         </div>
 
-        <div class="bg-secondary m-0 p-0">
-            <div class="container ">
-                <div class="row ">
-                    <div class="col ">
-                        <p class="text"><?php echo $moto['marca']; ?></p>
+        <div class="bg-dark">
+            <div class="m-0 py-3">
+                <div class="container bg-white rounded-5">
+                    <div class="row mb-3 ">
+                        <div class="col m-auto border-bottom-0 border-danger">
+                            <p class="text text-center display-2 pt-2">FICHA TECNICA</p>
+                        </div>
                     </div>
-                    <div class="col ">
-                        <p class="text "><?php echo $moto['marca']; ?></p>
+                </div>
+                <?php if(isset($moto['color'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Color</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['color']; ?></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-5 m-auto">
-                <div class="bg-secondary bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?></p>
-                </div>
-                <div class="bg-white bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?></p>
-                </div>
-                <div class="bg-secondary bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?></p>
-                </div>
-                <div class="bg-white bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?></p>
-                </div>
-                <div class="bg-secondary bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?></p>
-                </div>
-            </div>
-            <div class="col-md-5 m-auto">
-                <div class="bg-secondary bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?> <?php echo $moto['modelo']; ?></p>
-                </div>
-                <div class="bg-white bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?> <?php echo $moto['modelo']; ?></p>
-                </div>
-                <div class="bg-secondary bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?> <?php echo $moto['modelo']; ?></p>
-                </div>
-                <div class="bg-white bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?> <?php echo $moto['modelo']; ?></p>
-                </div>
-                <div class="bg-secondary bg-opacity-75 m-0 p-0">
-                    <p class="text "><?php echo $moto['marca']; ?> <?php echo $moto['modelo']; ?></p>
-                </div>
+                <?php } ?>
+                <?php if(isset($moto['motor'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-75 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Motor</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['motor']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['peso']) && $moto['peso'] != 0){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Peso</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['peso']; ?> Kg</p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['cilindrada'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-75 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Cilindrada</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['cilindrada']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['llantas'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Llantas</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['llantas']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['transmision'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-75 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Transmision</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['transmision']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['capacidadCombustible']) && $moto['capacidadCombustible'] != 0){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Capacidad Combustible</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['tipo']; ?> Litros</p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['suspencionDelantera'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-75 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Suspencion Delantera</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['suspencionDelantera']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['suspencionTrasera'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Suspencion Trasera</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['suspencionTrasera']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['frenoDelantero'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-75 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Freno Delantero</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['frenoDelantero']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['frenoTrasero'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Freno Trasero</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['frenoTrasero']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['refrigeracion'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-75 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Refrigeracion</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['refrigeracion']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['velocidadMaxima'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Velocidad Maxima</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['velocidadMaxima']; ?> km/h</p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['alimentacion'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-75 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Alimentacion</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['alimentacion']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if(isset($moto['codigo'])){ ?>
+                    <div class="container w-75 bg-white bg-opacity-50 rounded">
+                        <div class="row ">
+                            <div class="col m-auto border-right">
+                                <p class="text fs-5 pt-2">Codigo</p>
+                            </div>
+                            <div class="col m-auto border-left border-dark">
+                                <p class="text fs-5 pt-2"><?php echo $moto['codigo']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </main>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="../../../index.php" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <img class="bi" width="30" height="24" src="../../../imagenes/logo/logo2.0.png"  alt="Logo Leon Motos">
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Leon Motos</span>
+            </div>
+            <div class="m-auto">
+
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="https://wa.me/542615015652" target="_blank"><img class="bi" width="24" height="24" src="../../../imagenes/logito/whatsapp.svg" alt="Logo whatsapp"></a></li>
+                <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/profile.php?id=100084474042634" target="_blank"><img class="bi" width="24" height="24" src="../../../imagenes/logito/facebook.svg" alt="Logo Facebook"></a></li>
+                <li class="ms-3"><a class="text-muted" href="mailto:sanjurjoalan77@gmail.com" target="_blank"><img class="bi" width="24" height="24" src="../../../imagenes/logito/envelope.svg" alt="Logo Mail"></a></li>
+            </ul>
+        </footer>
+    </div>
 </body>
 </html>
