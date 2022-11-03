@@ -54,24 +54,23 @@
         </div>
         </div>
     </header>
-    
-    <main>
+    <main>        
         <div class="mt-1">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>            
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a class="carousel" href="includes/productos/bici.php"><img src="imagenes/Promocionales/banner_Bici.jpg" class="d-block w-100" alt="Banner Bicis"></a>
+                    <a class="carousel" href="includes/productos/moto.php"><img src="imagenes/promocionales/banner_Motos.jpg" class="d-block w-100" alt="Banner Bicis"></a>
                 </div>
-                <div class="carousel-item">
-                    <a class="carousel" href="includes/productos/moto.php"><img src="imagenes/Promocionales/banner_Motos.jpg" class="d-block w-100" alt="Banner Motos"></a>
+                <div class="carousel-item active">
+                    <a class="carousel" href="includes/productos/bici.php"><img src="imagenes/promocionales/banner_bici.jpg" class="d-block w-100" alt="Banner Bicis"></a>
                 </div>
-                <div class="carousel-item">
-                    <a class="carousel" href=""><img src="imagenes/Promocionales/banner_madre.jpg" class="d-block w-100" alt="Banner Dia Madre"></a>
+                <div class="carousel-item active">
+                    <a class="carousel" href="includes/productos/bici.php"><img src="imagenes/promocionales/banner_madre.jpg" class="d-block w-100" alt="Banner Bicis"></a>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -115,6 +114,64 @@
             </div>
         </div>
         
+        <div class="bg-secondary bg-opacity-50 py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 order-md-1">
+                        <p class="text-center m-auto pt-1 display-4 text-danger text-opacity-75">PROMOCIONES MOTOS</p>
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <?php
+                                $consultaMoto = $conex->query("SELECT * FROM moto where activo = 2");
+                                $i=0;
+                                while($imgPromocion = mysqli_fetch_assoc($consultaMoto)){ 
+                                $i++;
+                                ?>
+                                <div class="carousel-item <?php if($i == 1){echo "active";} ?>">
+                                    <a class="carousel" href="includes/productos/descripcionMoto.php?idMoto=<?php echo $imgPromocion['id'];?>"><img src="<?php echo $imgPromocion['url']; ?>" class="d-block w-100" alt="<?php echo $imgPromocion['marca']; echo $imgPromocion['modelo']; ?>"></a>                                    
+                                </div>
+                                <?php }?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <p class="text-center m-auto pt-1 display-4 text-danger text-opacity-75">PROMOCIONES BICIS</p>
+                        <div class="mt-1">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>            
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a class="carousel" href="includes/productos/moto.php"><img src="imagenes/promocionales/banner_Motos.jpg" class="d-block w-100" alt="Banner Bicis"></a>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <section id="nuestros-productos">
         <div class="container">
             <h2>Nuestros Productos</h2>
@@ -137,56 +194,6 @@
             </div>
         </div>
     </section>
-
-        <div class="album py-5 bg-dark">
-            <div class="container">
-                <p class="text-title text-center m-auto pb-4 display-4 text-white">Nuestros Productos</p>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="col">
-                    <div class="card shadow-sm bg-secondary border-dark rounded">
-                        <img src="imagenes/muestra/moto.jpg" class="p-1" alt="moto">
-                        <div class="card-body">
-                        <p class="card-title text-center display-4 text-white">Motocicletas</p>
-                        <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group m-auto">
-                                <a href="includes/productos/moto.php" type="button" class="btn btn-sm btn-outline-warning">Mas Info</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col">
-                    <div class="card shadow-sm bg-secondary border-dark rounded">
-                        <img src="imagenes/muestra/bici.jpg" class="p-1" alt="moto">
-                        <div class="card-body">
-                        <p class="card-title text-center display-4 text-white">Bicicletas</p>
-                        <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group m-auto">
-                                <a href="includes/productos/bici.php" type="button" class="btn btn-sm btn-outline-warning">Mas Info</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col">
-                    <div class="card shadow-sm bg-secondary border-dark rounded">
-                        <img src="imagenes/muestra/accesorio.jpg" class="p-1" alt="moto">
-                        <div class="card-body">
-                        <p class="card-title text-center display-4 text-white">Accesorios</p>
-                        <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group m-auto">
-                                <a href="includes/productos/accesorio.php" type="button" class="btn btn-sm btn-outline-warning">Mas Info</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
     <div class="container">

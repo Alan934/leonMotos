@@ -20,6 +20,10 @@ html{
     font-family: 'Open Sans', sans-serif !important; 
 }
 
+.tituloPromociones{
+    color: #9be24a;
+}
+
 body{
     background: #f8f9fa; 
 }
