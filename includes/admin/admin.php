@@ -1,5 +1,7 @@
 <?php 
     require("../../con_db.php");
+    session_start();
+    if($_SESSION['ingresoAdmin'] == "Permitido"){
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +41,7 @@
                 </a>
                 </li>
                 <li>
-                <a href="../../includes/productos/bici.php" class="nav-link text-dark">
+                <a href="#bicis" class="nav-link text-dark">
                     <img class="bi d-block mx-auto mb-1" width="34" height="34" src="../../imagenes/logito/bicycle.svg" alt="Logo Moto">
                     Bicicletas
                 </a>
@@ -59,7 +61,16 @@
     <div class="container w-75 my-2">
         <div class="row justify-content-center">
             <div class="col-auto">
-                <a href="agregarProductos/agregarMoto.php" class="btn btn-primary"><i class="bi bi-plus-square"></i> Agregar Moto</a>
+                <a href="agregarProductos/agregarMoto.php" class="btn btn-primary my-1"><i class="bi bi-plus-square"></i> Agregar Moto</a>
+            </div>
+            <div class="col-auto">
+                <a href="agregarProductos/agregarBici.php" class="btn btn-primary my-1"><i class="bi bi-plus-square"></i> Agregar Bici</a>
+            </div>
+            <div class="col-auto">
+                <a href="agregarProductos/agregarAccesorio.php" class="btn btn-primary my-1"><i class="bi bi-plus-square"></i> Agregar Accesorio</a>
+            </div>
+            <div class="col-auto">
+                <a href="cerrarSesion.php" class="btn btn-danger my-1"><i class="bi bi-door-closed-fill"></i> Cerrar Sesion</a>
             </div>
         </div>
     </div>
@@ -111,7 +122,83 @@
                         <td class="text-white border border-white"><?php echo $moto['marca']; ?></td>
                         <td class="text-white border border-white"><?php echo $moto['modelo']; ?></td>
                         <td class="text-white border border-white"><?php echo $moto['activo']; ?></td>
-                        <td class="text-white border border-white"><?php echo number_format($moto['precio'], 3, ",", "");?></td>
+                        <td class="text-white border border-white"><?php echo number_format($moto['precio'], 3, ",", ",");?></td>
+                        <td>
+                            <a href="editarProductos/editarMoto.php?idMoto=<?php echo $moto['id'] ?>" class="btn btn-secondary"><i class="fas fa-marker"></i></a>
+                            <a href="eliminarProducto/eliminarMoto.php?idMoto=<?php echo $moto['id'] ?>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td> 
+                    </tr>
+                </tbody>
+                <?php } ?>
+            </table>
+            <?php 
+                $totalRegistros =@mysqli_num_rows($queryMoto);
+                $totalPaginas = ceil($totalRegistros/$mostrarMoto);
+            ?>
+            <nav aria-label="Page navigation example d-flex flex-wrap justify-content-center">
+            <ul class="pagination d-flex flex-wrap justify-content-center mt-2 mb-0">
+                <li class="page-item"><a class="page-link" href="admin.php?pagina=<?php echo 1;?>">Primera</a></li>
+                <li class="page-item"><a class="page-link" href="admin.php?pagina=<?php if($pagina <= 1){echo $totalPaginas;}else{echo ($pagina-1);} ?>">Anterior</a></li>
+                <?php 
+                for($i=1; $i <= $totalPaginas; $i++){
+                    ?> <li class="page-item"><a class="page-link" href="admin.php?pagina=<?php echo "$i";?>"><?php echo "$i" ?></a></li> <?php
+                }
+                ?>
+                <li class="page-item"><a class="page-link" href="admin.php?pagina=<?php if($pagina >= $totalPaginas){echo 1;}else{echo ($pagina+1);} ?>">Siguiente</a></li>
+                <li class="page-item"><a class="page-link" href="admin.php?pagina=<?php echo $totalPaginas; ?>">Ultima</a></li>
+            </ul>
+            </nav>
+        </div>
+
+        <!-- BICICLETAS -->
+        
+        <div id="bicis" class="mt-4">
+            <div class="container bg-dark rounded-5">
+                <div class="row">
+                    <div class="col m-auto">
+                        <p class="text text-center text-white fs-4 pt-2">Bicicletas</p>
+                    </div>
+                    <div class="col">
+                        <form class="my-2 d-flex" role="search" method="GET" action="admin.php">
+                            <input type="search" class="form-control" name="buscar" placeholder="Buscar Bicicleta" aria-label="Search">
+                            <button class="btn btn-success ms-1" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php 
+            $queryMoto = $conex->query("SELECT * FROM moto");
+            $mostrarMoto = '10';
+            if(isset($_GET['pagina'])){
+                $pagina = $_GET['pagina'];
+            }else{
+                $pagina = 1;
+            }
+            $empieza = ($pagina-1) * $mostrarMoto;
+            if(isset($_GET['buscar'])){
+                $consultaMoto = $conex->query("SELECT * FROM moto where busqueda like '%".$_GET['buscar']."%'");
+            }else{
+                $consultaMoto = $conex->query("SELECT * FROM moto LIMIT $empieza, $mostrarMoto"); } 
+            ?>
+            <table class="table bg-dark">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-white border border-white">Codigo</th>
+                    <th scope="col" class="text-white border border-white">Marca</th>
+                    <th scope="col" class="text-white border border-white">Modelo</th>
+                    <th scope="col" class="text-white border border-white">Activo</th>
+                    <th scope="col" class="text-white border border-white">Precio</th>
+                    <th scope="col" class="text-white border border-white">Acciones</th>
+                    </tr>
+                </thead>
+                <?php while($moto = mysqli_fetch_assoc($consultaMoto)){ ?>
+                <tbody>
+                    <tr>
+                        <th class="text-white border border-white" scope="row"><?php echo $moto['codigo']; ?></th>
+                        <td class="text-white border border-white"><?php echo $moto['marca']; ?></td>
+                        <td class="text-white border border-white"><?php echo $moto['modelo']; ?></td>
+                        <td class="text-white border border-white"><?php echo $moto['activo']; ?></td>
+                        <td class="text-white border border-white"><?php echo number_format($moto['precio'], 3, ",", ",");?></td>
                         <td>
                             <a href="editarProductos/editarMoto.php?idMoto=<?php echo $moto['id'] ?>" class="btn btn-secondary"><i class="fas fa-marker"></i></a>
                             <a href="eliminarProducto/eliminarMoto.php?idMoto=<?php echo $moto['id'] ?>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
@@ -215,3 +302,9 @@
 </script>
 
 </html>
+<?php 
+
+}else{
+    header("location:../../index.php");
+    exit;
+} ?>

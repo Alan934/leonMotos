@@ -66,10 +66,10 @@
                 <div class="carousel-item active">
                     <a class="carousel" href="includes/productos/moto.php"><img src="imagenes/promocionales/banner_Motos.jpg" class="d-block w-100" alt="Banner Bicis"></a>
                 </div>
-                <div class="carousel-item active">
+                <div class="carousel-item">
                     <a class="carousel" href="includes/productos/bici.php"><img src="imagenes/promocionales/banner_bici.jpg" class="d-block w-100" alt="Banner Bicis"></a>
                 </div>
-                <div class="carousel-item active">
+                <div class="carousel-item">
                     <a class="carousel" href="includes/productos/bici.php"><img src="imagenes/promocionales/banner_madre.jpg" class="d-block w-100" alt="Banner Bicis"></a>
                 </div>
             </div>
@@ -87,39 +87,14 @@
         <div class="container-fluid">
             <p class="text-center bg-success mt-1"><img src="imagenes/logito/formapago.svg" alt="Logo Leon Motos" width="45" height="33" class="mb-2"><span class="ms-1 fs-2 text-white">Aceptamos Todos los Medios de Pago</span></p>
         </div>
-
-        <div class="album bg-secondary bg-opacity-25">
-            <div class="container w-100%">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
-                    <div class="col">
-                        <div class="m-5">
-                            <p class="card-title text-center m-auto pt-1 display-4 text-success" id="titulo">Somos Leon Motos</p>
-                            <p class="card-text py-5 px-0 mx-2 text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tenetur facere odio? Rerum atque dignissimos, modi debitis obcaecati nisi rem provident commodi molestiae eveniet neque? Sunt perspiciatis neque labore magni?</p>
-                            <div class="row" >
-                                <div class="col m-auto">
-                                    <a class="navbar-brand my-1 text-primary" href="https://wa.me/542615015652" target="_blank"><img src="imagenes/logito/whatsappLogo.svg" alt="Logo Whatsapp" width="33" height="27" class=""><span class="my-2 fs-5">Contactanos <br> <span class="text-success">261-5015652</span></span></a>
-                                </div>
-                                <div class="col m-auto">
-                                    <a class="navbar-brand my-1 text-primary" href="mailto:sanjurjoalan77@gmail.com" target="_blank"><img src="imagenes/logito/envelope.svg" alt="Logo Whatsapp" width="33" height="27" class=""><span class="my-2 fs-5">Contactanos <br> <span class="text-success">sanjurjoalan77@gmail.com</span></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col pb-1">
-                        <div class="card m-auto">
-                            <iframe class="m-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d209.79263342701222!2d-68.59147841672515!3d-32.72107323381253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e197a92b8d317%3A0x2aa199b05810ebd7!2sLe%C3%B3n%20motos%20Lavalle!5e0!3m2!1ses-419!2sar!4v1666199857966!5m2!1ses-419!2sar" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         
         <div class="bg-secondary bg-opacity-50 py-4">
-            <div class="container">
+            <div class="container my-2">
+                <p class="text-center m-auto display-4 text-danger text-opacity-75">PROMOCIONES</p>
                 <div class="row">
-                    <div class="col-md-6 order-md-1">
-                        <p class="text-center m-auto pt-1 display-4 text-danger text-opacity-75">PROMOCIONES MOTOS</p>
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="col-md-4 order-md-1">
+                        <p class="text-center m-auto pt-1 display-4 text-danger text-opacity-75">MOTOS</p>
+                        <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <?php
                                 $consultaMoto = $conex->query("SELECT * FROM moto where activo = 2");
@@ -128,30 +103,31 @@
                                 $i++;
                                 ?>
                                 <div class="carousel-item <?php if($i == 1){echo "active";} ?>">
-                                    <a class="carousel" href="includes/productos/descripcionMoto.php?idMoto=<?php echo $imgPromocion['id'];?>"><img src="<?php echo $imgPromocion['url']; ?>" class="d-block w-100" alt="<?php echo $imgPromocion['marca']; echo $imgPromocion['modelo']; ?>"></a>                                    
+                                    <a class="carousel" href="includes/productos/descripcion/descripcionMoto.php?codigoMoto=<?php echo $imgPromocion['codigo'];?>"><img src="<?php echo $imgPromocion['url']; ?>" class="d-block w-100" alt="<?php echo $imgPromocion['marca']; echo $imgPromocion['modelo']; ?>"></a>                                    
                                 </div>
                                 <?php }?>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-6 order-md-1">
-                        <p class="text-center m-auto pt-1 display-4 text-danger text-opacity-75">PROMOCIONES BICIS</p>
+                    <div class="col-md-4 order-md-1">
+                        <p class="text-center m-auto pt-1 display-4 text-danger text-opacity-75">BICIS</p>
                         <div class="mt-1">
                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-indicators">
+                                    
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>            
+
                                 </div>
                                 <div class="carousel-inner">
+                                    
                                     <div class="carousel-item active">
                                         <a class="carousel" href="includes/productos/moto.php"><img src="imagenes/promocionales/banner_Motos.jpg" class="d-block w-100" alt="Banner Bicis"></a>
                                     </div>
@@ -165,6 +141,31 @@
                                     <span class="visually-hidden">Siguiente</span>
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 order-md-1">
+                        <p class="text-center m-auto pt-1 display-4 text-danger text-opacity-75">MOTOS</p>
+                        <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <?php
+                                $consultaMoto = $conex->query("SELECT * FROM moto where activo = 2");
+                                $i=0;
+                                while($imgPromocion = mysqli_fetch_assoc($consultaMoto)){ 
+                                $i++;
+                                ?>
+                                <div class="carousel-item <?php if($i == 1){echo "active";} ?>">
+                                    <a class="carousel" href="includes/productos/descripcionMoto.php?idMoto=<?php echo $imgPromocion['id'];?>"><img src="<?php echo $imgPromocion['url']; ?>" class="d-block w-100" alt="<?php echo $imgPromocion['marca']; echo $imgPromocion['modelo']; ?>"></a>                                    
+                                </div>
+                                <?php }?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -195,7 +196,31 @@
         </div>
     </section>
     </main>
-
+            <div class="album mt-3 bg-secondary bg-opacity-25">
+            <div class="container w-100%">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+                    <div class="col">
+                        <div class="m-5">
+                            <p class="card-title text-center m-auto pt-1 display-4 text-success" id="titulo">Somos Leon Motos</p>
+                            <p class="card-text py-5 px-0 mx-2 text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tenetur facere odio? Rerum atque dignissimos, modi debitis obcaecati nisi rem provident commodi molestiae eveniet neque? Sunt perspiciatis neque labore magni?</p>
+                            <div class="row" >
+                                <div class="col m-auto">
+                                    <a class="navbar-brand my-1 text-primary" href="https://wa.me/542615015652" target="_blank"><img src="imagenes/logito/whatsappLogo.svg" alt="Logo Whatsapp" width="33" height="27" class=""><span class="my-2 fs-5">Contactanos <br> <span class="text-success">261-5015652</span></span></a>
+                                </div>
+                                <div class="col m-auto">
+                                    <a class="navbar-brand my-1 text-primary" href="mailto:sanjurjoalan77@gmail.com" target="_blank"><img src="imagenes/logito/envelope.svg" alt="Logo Whatsapp" width="33" height="27" class=""><span class="my-2 fs-5">Contactanos <br> <span class="text-success">sanjurjoalan77@gmail.com</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col pb-1">
+                        <div class="card m-auto">
+                            <iframe class="m-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d209.79263342701222!2d-68.59147841672515!3d-32.72107323381253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e197a92b8d317%3A0x2aa199b05810ebd7!2sLe%C3%B3n%20motos%20Lavalle!5e0!3m2!1ses-419!2sar!4v1666199857966!5m2!1ses-419!2sar" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <div class="col-md-4 d-flex align-items-center">

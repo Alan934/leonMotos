@@ -1,7 +1,12 @@
 <?php 
     require("../../../con_db.php");
-    $id = $_GET['idMoto'];
-    $consultaMoto = $conex->query("SELECT * FROM moto where id = $id");
+    if(isset($_GET['idMoto'])){
+        $id = $_GET['idMoto'];
+    }
+    if(isset($_GET['codigoMoto'])){
+        $codigoR = $_GET['codigoMoto'];  
+    }
+    $consultaMoto = $conex->query("SELECT * FROM moto where (id = $id) ");
     $moto = mysqli_fetch_assoc($consultaMoto);
 ?>
 <!DOCTYPE html>
@@ -65,9 +70,9 @@
                 <div class="col-md-6 order-md-1">
                     <p class="text-title display-1"><?php echo $moto['marca']; ?> <?php echo $moto['modelo']; ?></p>
                     <?php if($moto['precioAnterior'] > 0){ ?>
-                        <small class=""> <del class="text-danger fs-5 text-center ">$<?php echo $moto['precioAnterior'];?></del></small>
+                        <small class=""> <del class="text-danger fs-5 text-center ">$<?php echo number_format($moto['precioAnterior'], 3, ",", ",");?> ARS</del></small>
                     <?php } ?>
-                    <p class="text-success display-4">$<?php echo $moto['precio'];?> ARS</p>
+                    <p class="text-success display-4">$<?php echo number_format($moto['precio'], 3, ",", ",");?> ARS</p>
                     <p class="lead"><?php echo $moto['descripcion']; ?></p>
                     <div class="d-grid gap-3 col-10 mx-auto">
                         <button class="btn btn-primary" type="button">Comprar Ahora</button>

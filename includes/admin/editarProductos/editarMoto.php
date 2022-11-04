@@ -122,7 +122,7 @@
                     <div class="col">
                         <div class="form-floating my-1">
                             <input type="number" class="form-control" value="<?php echo $activo ?>" name="activo" id="floatingInput" placeholder="Activo:">
-                            <label for="floatingInput">Activo:</label>
+                            <label for="floatingInput">Activo (0,1,2):</label>
                         </div>
                     </div>
                     <div class="col">

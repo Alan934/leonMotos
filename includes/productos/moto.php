@@ -119,7 +119,7 @@
                             <div class="card-body">
                                 <p class="card-title text-center fs-4 m-0 p-0"><?php echo $moto['marca'];?> <?php echo $moto['modelo'];?></p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted text-center m-auto p-0"><span class="text-success fs-4">$<?php echo number_format($moto['precio'], 3, ",", "");?> ARS</span></small>
+                                    <small class="text-muted text-center m-auto p-0"><span class="text-success fs-4">$<?php echo number_format($moto['precio'], 3, ",", ",");?> ARS</span></small>
                                 </div>
                             </div>
                         </div>

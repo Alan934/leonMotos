@@ -2,6 +2,7 @@
     require("vendor/autoload.php");
     MercadoPago\SDK::setAccessToken('TEST-4292924684149727-103122-70842387fe610dc6bc0467c2354d1473-344348583');
     $preference = new MercadoPago\Preference();
+    $item = new MercadoPago\item();
     
 ?>
 <!DOCTYPE html>
