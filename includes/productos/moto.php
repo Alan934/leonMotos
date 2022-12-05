@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="../../imagenes/logo/Mi proyecto.png">
+    <link rel="icon" href="../../imagenes/logo/logo2.0.png">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,11 +19,10 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-    <header>
-        <div >
+    <header class="bg-primary">
+        <div>
         <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <div class="d-flex flex-wrap bg-primary align-items-center justify-content-center justify-content-lg-start">
             <a href="../../index.php" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
                 <img class="bi me-2" width="60" height="52" src="../../imagenes/logo/logo2.0.png" alt="Logo Leon Motos">
                 <span class="ms-1 fs-3 text-dark">Leon Motos</span>
@@ -50,7 +49,7 @@
                 </li>
             </ul>
             </div>
-            <div class="px-3 py-2 border-bottom mb-3">
+            <div class="px-3 py-2 border-bottom mb-3 bg-white rounded">
                 <div class="container d-flex flex-wrap justify-content-center">
                     <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto d-flex" role="search" method="GET" action="moto.php">
                         <input type="search" class="form-control" name="buscar" placeholder="Buscar Moto" aria-label="Search">
@@ -69,6 +68,7 @@
                                             <li><button class="btn dropdown-item" name="gilera" type="submit" >Gilera</button></li>
                                             <li><button class="btn dropdown-item" name="mondial" type="submit" >Mondial</button></li>
                                             <li><button class="btn dropdown-item" name="zanella" type="submit" >Zanella</button></li>
+                                            <li><button class="btn dropdown-item" name="hero" type="submit" >Hero</button></li>
                                         </form>
                                     </ul>
                                 </li>
@@ -81,6 +81,7 @@
                                             <li><button class="btn dropdown-item" name="precioDescendente" type="submit" >Mayor a Menor</button></li>
                                             <li><button class="btn dropdown-item" name="precio150a300" type="submit" >150K a 300K</button></li>
                                             <li><button class="btn dropdown-item" name="precio300a700" type="submit" >300K a 700K</button></li>
+                                            <li><button class="btn dropdown-item" name="precio700mas" type="submit" >Mas de 700K</button></li>
                                         </form>
                                     </ul>
                                 </li>
@@ -92,7 +93,7 @@
         </div>
         </div>
     </header>
-    
+    <main class="bg-dark">
     <?php 
         $queryMoto = $conex->query("SELECT * FROM moto WHERE activo=1");
         $mostrarMoto = '16';
@@ -109,17 +110,20 @@
     ?>
     
     <?php function mostrarMoto($sql) : void{ ?>
-        <div class="album py-2 bg-light">
+        <div class="album">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-3">
                     <?php while($moto = mysqli_fetch_assoc($sql)){ ?>
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm bg-dark border">
                             <a href="descripcion/descripcionMoto.php?idMoto=<?php echo $moto['id'];?>"><img src="../../<?php echo $moto['url'];?>" title="Descripcion" class="bd-placeholder-img card-img-top w-100 imgProducto" id="imagenProducto" alt="<?php echo $moto['marca'];?> <?php echo $moto['modelo'];?>"></a>     
                             <div class="card-body">
-                                <p class="card-title text-center fs-4 m-0 p-0"><?php echo $moto['marca'];?> <?php echo $moto['modelo'];?></p>
+                                <p class="card-title text-center text-white fs-4 m-0 p-0"><?php echo $moto['marca'];?> <?php echo $moto['modelo'];?></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <small class="text-muted text-center m-auto p-0"><span class="text-success fs-4">$<?php echo number_format($moto['precio'], 3, ",", ",");?> ARS</span></small>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="descripcion/descripcionMoto.php?idMoto=<?php echo $moto['id'];?>" class="btn btn-primary">Informacion</a>
                                 </div>
                             </div>
                         </div>
@@ -147,23 +151,31 @@
         $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where precio BETWEEN 300.000 AND 700.000");
         mostrarMoto($mostrarOrdenMoto);
     }
+    if(isset($_POST['precio700mas'])){
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where precio BETWEEN 700.000 AND 9000000");
+        mostrarMoto($mostrarOrdenMoto);
+    }
     if(isset($_POST['motomel'])){   
-        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca = 'Motomel'");
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca LIKE '%Motomel%'");
+        mostrarMoto($mostrarOrdenMoto);
+    }
+    if(isset($_POST['hero'])){   
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca LIKE '%Hero%'");
         mostrarMoto($mostrarOrdenMoto);
     }
     if(isset($_POST['gilera'])){   
-        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca = 'Gilera'");
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca LIKE '%Gilera%'");
         mostrarMoto($mostrarOrdenMoto);
     }
     if(isset($_POST['mondial'])){   
-        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca = 'Mondial'");
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca LIKE '%Mondial%'");
         mostrarMoto($mostrarOrdenMoto);
     }
     if(isset($_POST['zanella'])){   
-        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca = 'Zanella'");
+        $mostrarOrdenMoto = $conex->query("SELECT * FROM moto where marca LIKE '%Zanella%'");
         mostrarMoto($mostrarOrdenMoto);
     }
-    if(isset($_POST['todas']) || isset($_POST['precioOriginal']) || (!isset($_POST['precioAscendente']) && !isset($_POST['precio300a700']) && !isset($_POST['precioDescendente']) && !isset($_POST['precio150a300']) && !isset($_POST['motomel']) && !isset($_POST['gilera']) && !isset($_POST['zanella']) && !isset($_POST['mondial'])) ){
+    if(isset($_POST['todas']) || isset($_POST['precioOriginal']) || (!isset($_POST['precioAscendente']) && !isset($_POST['hero']) && !isset($_POST['precio700mas']) && !isset($_POST['precio300a700']) && !isset($_POST['precioDescendente']) && !isset($_POST['precio150a300']) && !isset($_POST['motomel']) && !isset($_POST['gilera']) && !isset($_POST['zanella']) && !isset($_POST['mondial'])) ){
         mostrarMoto($consultaMoto);
     }
     ?>
@@ -172,20 +184,23 @@
         $totalRegistros =@mysqli_num_rows($queryMoto);
         $totalPaginas = ceil($totalRegistros/$mostrarMoto);
     ?>
+
     <nav aria-label="Page navigation example d-flex flex-wrap justify-content-center">
-    <ul class="pagination d-flex flex-wrap justify-content-center mt-2 mb-0">
-        <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php echo 1;?>">Primera</a></li>
-        <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php if($pagina <= 1){echo $totalPaginas;}else{echo ($pagina-1);} ?>">Anterior</a></li>
-        <?php 
-        for($i=1; $i <= $totalPaginas; $i++){
-            ?> <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php echo "$i";?>"><?php echo "$i" ?></a></li> <?php
-        }
-        ?>
-        <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php if($pagina >= $totalPaginas){echo 1;}else{echo ($pagina+1);} ?>">Siguiente</a></li>
-        <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php echo $totalPaginas; ?>">Ultima</a></li>
-    </ul>
+        <ul class="pagination d-flex flex-wrap justify-content-center py-2 mb-0">
+            <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php echo 1;?>">Primera</a></li>
+            <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php if($pagina <= 1){echo $totalPaginas;}else{echo ($pagina-1);} ?>">Anterior</a></li>
+            <?php 
+            for($i=1; $i <= $totalPaginas; $i++){
+                ?> <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php echo "$i";?>"><?php echo "$i" ?></a></li> <?php
+            }
+            ?>
+            <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php if($pagina >= $totalPaginas){echo 1;}else{echo ($pagina+1);} ?>">Siguiente</a></li>
+            <li class="page-item"><a class="page-link" href="moto.php?pagina=<?php echo $totalPaginas; ?>">Ultima</a></li>
+        </ul>
     </nav>
 
+
+    </main>
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <div class="col-md-4 d-flex align-items-center">

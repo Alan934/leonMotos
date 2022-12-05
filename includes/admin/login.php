@@ -1,6 +1,4 @@
-    <?php 
-    require("../../con_db.php");
-    session_start(); ?>
+<?php session_start();require("../../con_db.php"); ob_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <main>
-        <br><br><br><br>
+        <br><br><br><br>        
         <div class="containter w-75 m-auto">
             <h1 class="h3 mb-3 text-center fw-bold text-warning fs-1">INICIO DE SESION</h1>
 
@@ -52,26 +50,4 @@
     </main>
 
 </body>
-</html>
-
-<?php 
-    if(isset($_POST['btnLogin'])){
-        if(strlen($_POST['usuario']) >= 1 && strlen($_POST['contrasena']) >= 1){
-            $usuario = $_POST['usuario']; $contrasena = $_POST['contrasena'];
-            $query ="SELECT*FROM registro WHERE nombre = '$usuario'";
-            $consultas = mysqli_query($conex, $query);
-            if(mysqli_num_rows($consultas) > 0){
-                $array = mysqli_fetch_array($consultas);
-                if(password_verify($contrasena, $array['contrasena'])){
-                    $_SESSION['ingresoAdmin'] = "Permitido";
-                    header("location:admin.php");
-                    exit;
-                }else{
-                    $_SESSION['mensajeIngreso'] = '!Contraseña incorrecta!';
-                    $_SESSION['mensajeColorIngreso'] = 'success';
-                }
-            }
-        }
-    }
-
-?>
+</html><?php if(isset($_POST['btnLogin'])){if(strlen($_POST['usuario']) >= 1 && strlen($_POST['contrasena']) >= 1){$usuario = $_POST['usuario']; $contrasena = $_POST['contrasena'];$query ="SELECT*FROM registro WHERE nombre = '$usuario'";$consultas = mysqli_query($conex, $query);if(mysqli_num_rows($consultas) > 0){$array = mysqli_fetch_array($consultas);if(password_verify($contrasena, $array['contrasena'])){$_SESSION['ingresoAdmin'] = "Permitido";header("location:admin.php");exit;}else{$_SESSION['mensajeIngreso'] = '!Contraseña incorrecta!';$_SESSION['mensajeColorIngreso'] = 'success';}}}}?>

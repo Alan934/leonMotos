@@ -47,7 +47,7 @@ session_start(); ?>
 </body>
 </html>
 
-<?php 
+<?php /*
     if(isset($_POST['btnRegistro'])){
 
             $usuario = "LeonMotos"; $contrasena = "Saturday3465";
@@ -55,6 +55,6 @@ session_start(); ?>
             $consulta = "INSERT INTO registro(nombre, contrasena) VALUES ('$usuario', '$contraFuerte')";
             $resultado = mysqli_query($conex, $consulta);
         
-    }
+    }*/
 
 ?>

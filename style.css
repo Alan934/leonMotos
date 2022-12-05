@@ -2,6 +2,9 @@
 *{
     font-family: 'Roboto', sans-serif;
 }
+
+
+
 html{
     scroll-behavior: smooth;
 }
@@ -10,11 +13,11 @@ html{
     padding: 0px;
     max-width: 95%;
 }
-
+/*
 .carousel img{
     max-width: 3001px;
     max-height: 1056px;
-}
+}*/
 
 #titulo{
     font-family: 'Open Sans', sans-serif !important; 

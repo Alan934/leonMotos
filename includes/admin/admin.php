@@ -1,9 +1,8 @@
-<?php 
+<?php session_start();
     require("../../con_db.php");
-    session_start();
+    ob_start();
     if($_SESSION['ingresoAdmin'] == "Permitido"){
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +23,7 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     
-    <header>
+    <header class="bg-primary">
         <div class="px-3 py-2 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -57,7 +56,7 @@
         </div>
         </div>
     </header>
-
+    <main>
     <div class="container w-75 my-2">
         <div class="row justify-content-center">
             <div class="col-auto">
@@ -70,21 +69,108 @@
                 <a href="agregarProductos/agregarAccesorio.php" class="btn btn-primary my-1"><i class="bi bi-plus-square"></i> Agregar Accesorio</a>
             </div>
             <div class="col-auto">
+                <a href="agregarProductos/agregarPromocion.php" class="btn btn-primary my-1"><i class="bi bi-plus-square"></i> Agregar Promocion</a>
+            </div>
+            <div class="col-auto">
                 <a href="cerrarSesion.php" class="btn btn-danger my-1"><i class="bi bi-door-closed-fill"></i> Cerrar Sesion</a>
             </div>
         </div>
     </div>
 
-    <main>
+    <div class="m-1 container-100">
+        <div class="w-100 d-flex flex-wrap justify-content-center text-center">
+            <?php if(isset($_SESSION['mensajeAdmin'])){ ?>
+                <div class="alert alert-<?= $_SESSION['mensajeColorAdmin']; ?> alert-dismissible fade show" role="alert">
+                    <?= $_SESSION['mensajeAdmin']; ?>
+                    <button type="button" name="btnSesion" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+ 
+    <div id="promociones" class="mb-4">
+            <div class="container bg-dark rounded-5">
+                <div class="row">
+                    <div class="col-3 m-auto">
+                        <p class="text text-center text-white fs-4 pt-2">Promociones</p>
+                    </div>
+                    <div class="col-9">
+                        <form class="my-2 d-flex" role="search" method="GET" action="admin.php">
+                            <input type="search" class="form-control" name="buscarPromocion" placeholder="Buscar Promocion" aria-label="Search">
+                            <button class="btn btn-success ms-1" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php 
+            $queryPromocion = $conex->query("SELECT * FROM moto");
+            $mostrarPromocion = '10';
+            if(isset($_GET['pagina'])){
+                $pagina = $_GET['pagina'];
+            }else{
+                $pagina = 1;
+            }
+            $empiezaPromocion = ($pagina-1) * $mostrarPromocion;
+            if(isset($_GET['buscarPromocion'])){
+                $consultaPromocion = $conex->query("SELECT * FROM promocion where busqueda like '%".$_GET['buscarPromocion']."%'");
+            }else{
+                $consultaPromocion = $conex->query("SELECT * FROM promocion LIMIT $empiezaPromocion, $mostrarPromocion"); } 
+            ?>
+            <table class="table bg-dark">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-white border border-white">Codigo</th>
+                    <th scope="col" class="text-white border border-white">Marca</th>
+                    <th scope="col" class="text-white border border-white">Modelo</th>
+                    <th scope="col" class="text-white border border-white">Tipo</th>
+                    <th scope="col" class="text-white border border-white">Acciones</th>
+                    </tr>
+                </thead>
+                <?php while($promocion = mysqli_fetch_assoc($consultaPromocion)){ ?>
+                <tbody>
+                    <tr>
+                        <th class="text-white border border-white" scope="row"><?php echo $promocion['codigo']; ?></th>
+                        <td class="text-white border border-white"><?php echo $promocion['marca']; ?></td>
+                        <td class="text-white border border-white"><?php echo $promocion['modelo']; ?></td>
+                        <td class="text-white border border-white"><?php echo $promocion['tipo']; ?></td>
+                        <td>
+                            <a href="editarProductos/editarPromocion.php?idPromocion=<?php echo $promocion['id'] ?>" class="btn btn-secondary"><i class="fas fa-marker"></i></a>
+                            <a href="eliminarProducto/eliminarPromocion.php?idPromocion=<?php echo $promocion['id'] ?>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <?php } ?>
+            </table>
+            <?php 
+                $totalRegistros =@mysqli_num_rows($queryPromocion);
+                $totalPaginas = ceil($totalRegistros/$mostrarPromocion);
+            ?>
+            <nav aria-label="Page navigation example d-flex flex-wrap justify-content-center">
+            <ul class="pagination d-flex flex-wrap justify-content-center mt-2 mb-0">
+                <li class="page-item"><a class="page-link bg-white bg-opacity-50" href="admin.php?pagina=<?php echo 1;?>">Primera</a></li>
+                <li class="page-item"><a class="page-link bg-white bg-opacity-50" href="admin.php?pagina=<?php if($pagina <= 1){echo $totalPaginas;}else{echo ($pagina-1);} ?>">Anterior</a></li>
+                <?php 
+                for($i=1; $i <= $totalPaginas; $i++){
+                    ?> <li class="page-item"><a class="page-link bg-white bg-opacity-50" href="admin.php?pagina=<?php echo "$i";?>"><?php echo "$i" ?></a></li> <?php
+                }
+                ?>
+                <li class="page-item"><a class="page-link bg-white bg-opacity-50" href="admin.php?pagina=<?php if($pagina >= $totalPaginas){echo 1;}else{echo ($pagina+1);} ?>">Siguiente</a></li>
+                <li class="page-item"><a class="page-link bg-white bg-opacity-50" href="admin.php?pagina=<?php echo $totalPaginas; ?>">Ultima</a></li>
+            </ul>
+            </nav>
+        </div>
+        
+        <!--MOTOS-->
+
         <div id="motos">
             <div class="container bg-dark rounded-5">
                 <div class="row">
-                    <div class="col m-auto">
+                    <div class="col-3 m-auto">
                         <p class="text text-center text-white fs-4 pt-2">Motos</p>
                     </div>
-                    <div class="col">
+                    <div class="col-9">
                         <form class="my-2 d-flex" role="search" method="GET" action="admin.php">
-                            <input type="search" class="form-control" name="buscar" placeholder="Buscar Moto" aria-label="Search">
+                            <input type="search" class="form-control" name="buscarMoto" placeholder="Buscar Moto" aria-label="Search">
                             <button class="btn btn-success ms-1" type="submit">Buscar</button>
                         </form>
                     </div>
@@ -98,11 +184,11 @@
             }else{
                 $pagina = 1;
             }
-            $empieza = ($pagina-1) * $mostrarMoto;
-            if(isset($_GET['buscar'])){
-                $consultaMoto = $conex->query("SELECT * FROM moto where busqueda like '%".$_GET['buscar']."%'");
+            $empiezaMoto = ($pagina-1) * $mostrarMoto;
+            if(isset($_GET['buscarMoto'])){
+                $consultaMoto = $conex->query("SELECT * FROM moto where busqueda like '%".$_GET['buscarMoto']."%'");
             }else{
-                $consultaMoto = $conex->query("SELECT * FROM moto LIMIT $empieza, $mostrarMoto"); } 
+                $consultaMoto = $conex->query("SELECT * FROM moto LIMIT $empiezaMoto, $mostrarMoto"); } 
             ?>
             <table class="table bg-dark">
                 <thead>
@@ -155,12 +241,12 @@
         <div id="bicis" class="mt-4">
             <div class="container bg-dark rounded-5">
                 <div class="row">
-                    <div class="col m-auto">
+                    <div class="col-3 m-auto">
                         <p class="text text-center text-white fs-4 pt-2">Bicicletas</p>
                     </div>
-                    <div class="col">
+                    <div class="col-9">
                         <form class="my-2 d-flex" role="search" method="GET" action="admin.php">
-                            <input type="search" class="form-control" name="buscar" placeholder="Buscar Bicicleta" aria-label="Search">
+                            <input type="search" class="form-control" name="buscarBici" placeholder="Buscar Bicicleta" aria-label="Search">
                             <button class="btn btn-success ms-1" type="submit">Buscar</button>
                         </form>
                     </div>
@@ -174,11 +260,11 @@
             }else{
                 $pagina = 1;
             }
-            $empieza = ($pagina-1) * $mostrarMoto;
-            if(isset($_GET['buscar'])){
-                $consultaMoto = $conex->query("SELECT * FROM moto where busqueda like '%".$_GET['buscar']."%'");
+            $empiezaBici = ($pagina-1) * $mostrarMoto;
+            if(isset($_GET['buscarBici'])){
+                $consultaMoto = $conex->query("SELECT * FROM moto where busqueda like '%".$_GET['buscarBici']."%'");
             }else{
-                $consultaMoto = $conex->query("SELECT * FROM moto LIMIT $empieza, $mostrarMoto"); } 
+                $consultaMoto = $conex->query("SELECT * FROM moto LIMIT $empiezaBici, $mostrarMoto"); } 
             ?>
             <table class="table bg-dark">
                 <thead>

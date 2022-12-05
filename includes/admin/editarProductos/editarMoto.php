@@ -1,4 +1,7 @@
-<?php require("../../../con_db.php"); ?>
+<?php session_start();ob_start(); require("../../../con_db.php");
+if($_SESSION['ingresoAdmin'] == "Permitido"){
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +40,18 @@
             $peso = $arrayEditar['peso'];
             $color = $arrayEditar['color'];
             $transmision = $arrayEditar['transmision'];
+            $capacidadCombustible = $arrayEditar['capacidadCombustible'];
+            $suspencionDelantera = $arrayEditar['suspencionDelantera'];
+            $suspencionTrasera = $arrayEditar['suspencionTrasera'];
+            $frenoDelantero = $arrayEditar['frenoDelantero'];
+            $frenoTrasero = $arrayEditar['frenoTrasero'];
+            $motor = $arrayEditar['motor'];
+            $alimentacion = $arrayEditar['alimentacion'];
+            $refrigeracion = $arrayEditar['refrigeracion'];
+            $cilindrada = $arrayEditar['cilindrada'];
+            $velocidadMaxima = $arrayEditar['velocidadMaxima'];
+            $potencia = $arrayEditar['potencia'];
+            $encendido = $arrayEditar['encendido'];
         }
     }
     if(isset($_POST['btnEditarMoto'])){
@@ -53,12 +68,30 @@
         $peso = trim($_POST['peso']);
         $color = trim($_POST['color']);
         $transmision = trim($_POST['transmision']);
+
+        $capacidadCombustible = trim($_POST['capacidadCombustible']);
+        $suspencionDelantera = trim($_POST['suspencionDelantera']);
+        $suspencionTrasera = trim($_POST['suspencionTrasera']);
+        $frenoDelantero = trim($_POST['frenoDelantero']);
+        $frenoTrasero = trim($_POST['frenoTrasero']);
+        $motor = trim($_POST['motor']);
+        $alimentacion = trim($_POST['alimentacion']);
+        $refrigeracion = trim($_POST['refrigeracion']);
+        $cilindrada = trim($_POST['cilindrada']);
+        $velocidadMaxima = trim($_POST['velocidadMaxima']);
+        $potencia = trim($_POST['potencia']);
+        $encendido = trim($_POST['encendido']);
         
         $query = ("UPDATE moto SET marca = '$marca', url ='$url', precio = '$precio', modelo = '$modelo', codigo = '$codigo', 
         descripcion = '$descripcion', precioAnterior = '$precioAnterior', activo = '$activo', busqueda = '$busqueda', llantas = '$llantas',
-        peso = '$peso', color = '$color', transmision = '$transmision' WHERE id = $id");
+        peso = '$peso', color = '$color', transmision = '$transmision', encendido = '$encendido', potencia = '$potencia', velocidadMaxima = '$velocidadMaxima',
+        cilindrada = '$cilindrada', refrigeracion = '$refrigeracion', alimentacion = '$alimentacion', motor = '$motor', frenoTrasero = '$frenoTrasero',
+        frenoDelantero = '$frenoDelantero', suspencionTrasera = '$suspencionTrasera', suspencionDelantera = '$suspencionDelantera' WHERE id = $id");
         
         mysqli_query($conex, $query);
+
+        $_SESSION['mensajeAdmin'] = '!Moto Editada Correctamente¡';
+        $_SESSION['mensajeColorAdmin'] = 'success';
         header ("Location: ../admin.php");
     }
 ?>
@@ -122,7 +155,7 @@
                     <div class="col">
                         <div class="form-floating my-1">
                             <input type="number" class="form-control" value="<?php echo $activo ?>" name="activo" id="floatingInput" placeholder="Activo:">
-                            <label for="floatingInput">Activo (0,1,2):</label>
+                            <label for="floatingInput">Activo (0,1):</label>
                         </div>
                     </div>
                     <div class="col">
@@ -159,6 +192,87 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $frenoTrasero ?>" name="frenoTrasero" id="floatingInput" placeholder="Freno Trasero:">
+                            <label for="floatingInput">Freno Trasero:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $frenoDelantero ?>" name="frenoDelantero" id="floatingInput" placeholder="Freno Delantero:">
+                            <label for="floatingInput">Freno Delantero:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $encendido ?>" name="encendido" id="floatingInput" placeholder="Encendido:">
+                            <label for="floatingInput">Encendido:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $suspencionTrasera ?>" name="suspencionTrasera" id="floatingInput" placeholder="Suspencion Trasera:">
+                            <label for="floatingInput">Suspencion Trasera:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $suspencionDelantera ?>" name="suspencionDelantera" id="floatingInput" placeholder="Suspencion Delantera:">
+                            <label for="floatingInput">Suspencion Delantera:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $potencia ?>" name="potencia" id="floatingInput" placeholder="Potencia:">
+                            <label for="floatingInput">Potencia:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-floating my-1">
+                            <input type="number" class="form-control" value="<?php echo $velocidadMaxima ?>" name="velocidadMaxima" id="floatingInput" placeholder="Velocidad Maxima:">
+                            <label for="floatingInput">Velocidad Maxima:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $cilindrada ?>" name="cilindrada" id="floatingInput" placeholder="Cilindrada:">
+                            <label for="floatingInput">Cilindrada:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $refrigeracion ?>" name="refrigeracion" id="floatingInput" placeholder="Refrigeracion:">
+                            <label for="floatingInput">Refrigeracion:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $alimentacion ?>" name="alimentacion" id="floatingInput" placeholder="Alimentacion:">
+                            <label for="floatingInput">Alimentacion:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $capacidadCombustible ?>" name="capacidadCombustible" id="floatingInput" placeholder="Capacidad Combustible:">
+                            <label for="floatingInput">Capacidad Combustible:</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating my-1">
+                            <input type="text" class="form-control" value="<?php echo $motor ?>" name="motor" id="floatingInput" placeholder="Motor:">
+                            <label for="floatingInput">Motor:</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col text-center mt-2">
                     <button type="submit" name="btnEditarMoto" class="btn btn-lg btn-success w-75"><i class="bi bi-save-fill"></i> Editar</button>
                     <a href="../admin.php" class="btn btn-lg btn-secondary w-50 my-1"><i class="bi bi-arrow-return-left"></i> Atras</a>
@@ -168,3 +282,18 @@
     </main>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {
+        if(e.keyCode == 13) {
+          e.preventDefault();
+        }
+      }))
+    });
+  </script>
+<?php 
+
+}else{
+    header("location:../../../index.php");
+    exit;
+} ?>
